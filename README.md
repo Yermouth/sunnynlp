@@ -29,7 +29,7 @@ to install the language model required
 
 
 ## Usage
-- Edit the path for Probase, pre-trained vectors, output path, etc. according to the instructions in [`./config/configuration.yml`](config/configuration.yml).
+- Edit the path for Probase, pre-trained vectors, output path, etc. according to the instructions in [`./config/configuration-sample.yml`](config/configuration-sample.yml).
 
 - Run the main program in root directory to generate predictions based on your configuration:
 ```
