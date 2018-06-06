@@ -1,0 +1,116 @@
+---
+## Prediction
+output_path: prediction/prediction-final
+
+## Probase
+lemma_dir: spacy-probase/spacy/
+model_dir: ./model/model_final/
+
+## Data
+train: ./data/training/train.txt
+dev: ./data/training/validation.txt
+test: ./ref/truth.txt
+
+## Features
+data_type:
+    - train
+    - dev
+    - test
+
+pretrain_embeddings:
+    - name: GloVe
+      path: ./data/vectors/glove.6B.300d.w2v
+      is_bin: False
+
+    - name: Word2Vec
+      path: ./data/vectors/GoogleNews-vectors-negative300.bin
+      is_bin: True
+
+    - name: FastText
+      path: ./data/vectors/wiki.en.vec
+      is_bin: False
+
+## Evaluation
+random_seed: 1
+
+# Which data to use for cross validation and number of training folds
+# uses is a list of data_type, i.e. train/dev/test
+# fold is number of folds for cv
+cross_validation_configs:
+    - uses:
+        - dev
+      folds: 5
+
+# How to split the data for training and testing
+# train and test are a list of data_type, i.e. train/dev/test
+#
+# For instance:
+#
+#     - train:
+#        - train
+#        - dev
+#      test:
+#        - test
+#
+# means to train with the train and dev partition together,
+# and test with test partition
+split_configs:
+    - train:
+        - dev
+      test:
+        - test
+
+    - train:
+        - train
+        - dev
+      test:
+        - test
+
+    - train:
+        - train
+      test:
+        - test
+
+    - train:
+        - train
+      test:
+        - dev
+
+# What feature to use in each training process
+# For instance:
+#
+# - - GloVe
+#   - Probase
+#
+# means to use features from GloVe and Probase together (concatenate)
+# and
+#
+# - - Probase
+#
+# means to use only use features from Probase
+feature_configs:
+    - - Probase
+
+    - - GloVe
+
+    - - GloVe
+      - Probase
+
+    - - Word2Vec
+
+    - - Word2Vec
+      - Probase
+
+    - - FastText
+
+    - - FastText
+      - Probase
+
+# Which classifier to use for training?
+classifier_configs:
+    - logistic
+    - dtc
+    - svm-rbf
+    - rf
+    - LinearSVC
+
