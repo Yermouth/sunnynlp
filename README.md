@@ -28,20 +28,20 @@ to install the language model required
 - [Our spaCy parsed version of Probase](https://github.com/Yermouth/spacy-probase) or the original [Probase](https://www.microsoft.com/en-us/research/project/probase/)
 
 
-## Basic usage
+## Usage
 - Edit the path for Probase, pre-trained vectors, output path, etc. according to the instructions in [`./config/configuration.yml`](config/configuration.yml).
 
 - Run the main program in root directory to generate predictions based on your configuration:
 ```
-$ python src/main.py config/configuration-1.yml
+$ python src/main.py config/configuration-sample.yml
 ```
 
 - Run the official script to evaluate the predictions in the directory you have specified and save scores in `./score/`
 ```
-$ ./official-evaluation.sh ./prediction/configuration-1
-./prediction/prediction-final/dev-5folds-FastText-dtc.txt
+$ ./official-evaluation.sh ./prediction/configuration-sample
+./prediction/configuration-sample/dev-5folds-FastText-dtc.txt
 3 ./score/all-score.txt
-./prediction/prediction-final/dev-5folds-FastText-LinearSVC.txt
+./prediction/configuration-sample/dev-5folds-FastText-LinearSVC.txt
 5 ./score/all-score.txt
 ```
 

@@ -1,10 +1,10 @@
 ---
 ## Prediction
-output_path: prediction/prediction-final
+output_path: ./prediction/configuration-sample
 
 ## Probase
-lemma_dir: spacy-probase/spacy/
-model_dir: ./model/model_final/
+lemma_dir: ./spacy-probase/spacy/
+model_dir: ./model/configuration-sample/
 
 ## Data
 train: ./data/training/train.txt
